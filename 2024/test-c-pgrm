@@ -1,0 +1,95 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Computer_Warehouse
+{
+private:
+int sales_hard_disk=0, sales_memory_card=0,sales_microphone=0;
+float price_hard_disk=3576.40, price_memory_card=521.30, price_microphone=123.89;
+long int target=99999, prevtgt;
+int flag=0;
+public:
+void hard_disk_status(int q)
+{
+sales_hard_disk+=q;
+}
+void memory_card_status(int q)
+{
+sales_memory_card+=q;
+}
+void microphone_status(int q)
+{
+sales_microphone+=q;
+}
+float NetSales()
+{
+return ((sales_hard_disk*price_hard_disk)+(sales_memory_card*price_memory_card)+(sales_microphone*price_microphone));
+}
+int milestone()
+{
+if (NetSales()>=target)
+flag=1;
+else
+flag=0;
+return flag;
+}
+void display()
+{
+cout<<"\nSales Report:\nHard disks: "<<sales_hard_disk;
+cout<<"\nMemory cards: "<<sales_memory_card;
+cout<<"\nMicrophones: "<<sales_microphone;
+cout<<"\n\nTotal Amount Received INR(₹):"<<NetSales()<<endl;
+if (milestone())
+{
+cout <<"\n\tCongratulations! Monthly target achieved";
+}
+else
+{
+cout <<"\n\nMonthly target not achieved";
+}
+}
+void previous(int x, int y, int z)
+{
+cout<<"\n\tPrevious month sales:";
+cout<<"\nHard disks:"<<x<<"\nMemory Cards:"<<y<<"\nMicrophones:"<<z;
+prevtgt=(x*price_hard_disk)+(y*price_memory_card)+(z*price_microphone);
+cout<<"\nTotal Amount Received INR(₹):"<<prevtgt;
+if(prevtgt>=target)
+cout<<"\n\tCongratulations! Monthly target achieved\n";
+else
+cout <<"\nMonthly target not achieved";
+}
+};
+int main()
+{
+Computer_Warehouse ware;
+int hds,mcs,ms;
+cout<<"\tThe computer peripheral sales for this month\n";
+cout<<"Enter the hard disk sales quantity:";
+cin>>hds;
+cout<<"Enter the memory card sales quantity:";
+cin>>mcs;
+cout<<"Enter the microphone sales quantity:";
+cin>>ms;
+ware.hard_disk_status(hds);
+ware.memory_card_status(mcs);
+ware.microphone_status(ms);
+ware.display();
+int review;
+cout<<"\nWould you like to view previous month target:\nPress 1 or 2\n1.Yes\t2.No:\n";
+cin>>review;
+switch(review)
+{
+case 1:
+{
+ware.previous(56,78,120);
+break;
+}
+case 2:
+{
+break;
+}
+defalut:"\nIncorrect entry please try later";
+}
+return 0;
+}
